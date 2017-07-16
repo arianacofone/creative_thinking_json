@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Creative Thinking Advice Randomizer</title>
+  </head>
+  <body>
+
+    <script>
+        // Sets up request format
+        let request = new XMLHttpRequest();
+        request.open('GET', 'advice.json', true);
+
+        // When page is loaded make the GET Request
+        request.onload = function () {
+        	// Parse the data and select one quote from object in array
+        	let response = JSON.parse(this.response);
+          var specificAdvice = response[Math.floor(Math.random()*response.length)].advice;
+
+          // Creates HTML paragraph for chosen quote
+          var quoteHTML = document.createElement('p');
+          quoteHTML.innerHTML = specificAdvice;
+          document.body.appendChild(quoteHTML);
+        }
+
+        // Send the request
+        request.send();
+
+      </script>
+
+  </body>
+</html>
